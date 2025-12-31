@@ -1,0 +1,8 @@
+﻿  MFCApplication4.cpp
+c:\users\user\source\repos\mfcapplication4\mfcapplication4\mfcapplication4dlg.h(62): error C2144: 구문 오류: void'은(는) ';' 다음에 와야 합니다.
+  MFCApplication4Dlg.cpp
+c:\users\user\source\repos\mfcapplication4\mfcapplication4\mfcapplication4dlg.h(62): error C2144: 구문 오류: void'은(는) ';' 다음에 와야 합니다.
+c:\users\user\source\repos\mfcapplication4\mfcapplication4\mfcapplication4dlg.cpp(75): error C2653: 'CYourWnd': 클래스 또는 네임스페이스 이름이 아닙니다.
+c:\users\user\source\repos\mfcapplication4\mfcapplication4\mfcapplication4dlg.cpp(359): error C2039: 'GetLBText': 'CListBox'의 멤버가 아닙니다.
+  c:\program files (x86)\microsoft visual studio\2017\professional\vc\tools\msvc\14.15.26726\atlmfc\include\afxwin.h(3557): note: 'CListBox' 선언을 참조하십시오.
+  코드를 생성하고 있습니다...

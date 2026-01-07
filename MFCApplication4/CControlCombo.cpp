@@ -18,10 +18,18 @@ void CControlCombo::DeleteCombo(CComboBox* Combo)
 	//CComboBox* Combo = (CComboBox*)GetDlgItem(IDC_COMBO1);
 	CString s;
 	int x = Combo->GetCurSel();
-	if (x < 0) return;
+	if (x < 0)
+	{
+		AfxMessageBox(_T("삭제할 항목이 선택되지 않았습니다."));
+		return;
+	}
 	Combo->GetLBText(x, s);
 	s.Trim();
-	if (x == 0) return;
+	if (x == 0)
+	{
+		AfxMessageBox(_T("Default 항목은 삭제할 수 없습니다."));
+		return;
+	}
 	Combo->DeleteString(x);
 	m_SaveMap.erase(s);
 }
@@ -34,7 +42,11 @@ void CControlCombo::SaveCombo(CComboBox* pCombo)
 	pCombo->GetWindowTextW(wText);
 	wText.Trim();
 
-	if (wText == _T("")) return;
+	if (wText == _T(""))
+	{
+		AfxMessageBox(_T("추가할 항목을 입력해 주세요"));
+		return;
+	}
 	int nTarget = CheckComboList(pCombo, wText);
 
 	if (nTarget == -1)
@@ -106,3 +118,26 @@ void CControlCombo::ApplyCombo(SSaveData s)
 		if (target3) m_pParent->SendMessage(WM_APPLYRADIO, (WPARAM)s.radio, (LPARAM)target3->GetSafeHwnd());
 	}
 }
+
+/*
+
+SendMessage를 이용해서 상태 처리를 하기 때문에 부모 클래스에 해당 함수 및 메시지 필요
+
+
+ON_MESSAGE(WM_APPLYRADIO, &CMFCApplication4Dlg::OnApplyRadioMsg)
+
+LRESULT OnApplyRadioMsg(WPARAM wParam, LPARAM lParam)
+{
+	int id = (int)wParam;
+	HWND hTarget = (HWND)lParam;
+
+	CWnd* x = CWnd::FromHandle(hTarget);
+	if (x && ::IsWindow(hTarget))
+	{
+		ApplyRadio(x, id); // 기존 멤버 함수 그대로 사용
+	}
+	return 0;
+}
+
+
+*/
